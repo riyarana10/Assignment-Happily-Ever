@@ -3,7 +3,7 @@ const User = require("../models/user");
 const router = new express.Router();
 
 //Creating new profile/user
-router.post("/users", async (req, res) => {
+router.post("/users/createProfile", async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -25,7 +25,7 @@ router.get("/users", async (req, res) => {
 });
 
 //Listing all profiles/users with status = "Pause"
-router.get("/users/Pause", async (req, res) => {
+router.get("/users/PausedProfiles", async (req, res) => {
   try {
     const user = await User.find({ status: "Pause" });
     if (!user) {
@@ -39,7 +39,7 @@ router.get("/users/Pause", async (req, res) => {
 });
 
 //Updating status of user (selecting user with id)
-router.patch("/users/:id", async (req, res) => {
+router.patch("/users/changeStatus/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -56,7 +56,7 @@ router.patch("/users/:id", async (req, res) => {
 });
 
 //Deleting profile/user
-router.delete("/users/:id", async (req, res) => {
+router.delete("/users/deleteProfile/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
