@@ -5,7 +5,6 @@ const User = mongoose.model("User", {
   name: {
     type: String,
     required: true,
-    trim: true,
   },
   //date of birth
   DOB: {
